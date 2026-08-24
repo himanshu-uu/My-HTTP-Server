@@ -1,0 +1,20 @@
+{
+  "name": "my-http-server",
+  "version": "1.0.0",
+  "description": "creating a http server from scratch",
+  "homepage": "https://github.com/himanshu-uu/My-HTTP-Server#readme",
+  "bugs": {
+    "url": "https://github.com/himanshu-uu/My-HTTP-Server/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/himanshu-uu/My-HTTP-Server.git"
+  },
+  "license": "ISC",
+  "author": "Himanshu Shekhar",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
