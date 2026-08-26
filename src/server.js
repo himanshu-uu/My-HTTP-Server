@@ -44,6 +44,11 @@ const server = net.createServer((socket) => {
 
             buffer = buffer.slice(requestEndIndex);     // removing the current request from buffer after it is parsed
 
+            if (request.method === "GET" && request.path === "/") {
+                homeHandler(request,socket)
+            } else if (request.method === "GET" && request.path === "/users") {
+                console.log("Users route");
+            }
             console.log(request);
 
             socket.write(
@@ -89,6 +94,10 @@ function parseBody(contentType, requestBody) {
         return JSON.parse(requestBody)
     }
     return requestBody;
+}
+
+function homeHandler(request, socket){      // request to get information about the request and socket to send response 
+    console.log("Home Route");
 }
 
 server.listen(3000);
