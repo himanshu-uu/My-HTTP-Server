@@ -23,6 +23,7 @@ const server = net.createServer((socket) => {
 
             const bodyStartIndex = headerEndIndex + 4;       // body starts after the blank line \r\n\r\n
 
+            let requestEndIndex;
             if (request.headers["Content-Length"]) {
 
                 const contentLength = Number(request.headers["Content-Length"]);
@@ -35,13 +36,13 @@ const server = net.createServer((socket) => {
 
                 request.body = parseBody(request.headers["Content-Type"], requestBody);
 
-                const requestEndIndex = bodyStartIndex + contentLength;
-                buffer = buffer.slice(requestEndIndex);     // removing the current request from buffer after it is parsed
+                requestEndIndex = bodyStartIndex + contentLength;
             }
             else {
-                const requestEndIndex = headerEndIndex + 4; // next request starts after the blank line \r\n\r\n
-                buffer = buffer.slice(requestEndIndex);
+                requestEndIndex = bodyStartIndex; // next request starts after the blank line \r\n\r\n
             }
+
+            buffer = buffer.slice(requestEndIndex);     // removing the current request from buffer after it is parsed
 
             console.log(request);
 
